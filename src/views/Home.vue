@@ -54,14 +54,17 @@
 
 <script setup lang="ts">
 import { onMounted } from 'vue';
+import { useRouter } from 'vue-router';
 import { useMembersStore } from '@/stores';
 import { calculateAgeInMonths, formatAge } from '@/utils/date';
 
+const router = useRouter();
 const membersStore = useMembersStore();
 
 const goToMemberDetail = (memberId: string) => {
   membersStore.setCurrentMember(memberId);
-  alert('成员详情页面开发中...');
+  // 这里先跳转到成员列表，等后续实现成员详情页面
+  router.push(`/members`);
 };
 
 const showComingSoon = () => {

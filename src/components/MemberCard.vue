@@ -3,12 +3,25 @@
     <van-card :title="member.name" :thumb="member.avatar || defaultAvatar">
       <template #desc>
         <div class="member-info">
-          <span class="gender">{{ member.gender === 'male' ? '男' : '女' }}</span>
+          <span class="gender" :class="member.gender">
+            {{ member.gender === 'male' ? '男' : '女' }}
+          </span>
           <span class="age">{{ calculateAge(member.birthDate) }}</span>
+          <span class="birth-date">{{ formatDate(member.birthDate) }}</span>
         </div>
       </template>
       <template #footer>
-        <van-button size="small" @click="$emit('select', member)">查看详情</van-button>
+        <div class="action-buttons">
+          <van-button size="small" type="primary" @click="$emit('select', member)">
+            查看详情
+          </van-button>
+          <van-button size="small" @click="$emit('edit', member)">
+            编辑
+          </van-button>
+          <van-button size="small" type="danger" @click="$emit('delete', member)">
+            删除
+          </van-button>
+        </div>
       </template>
     </van-card>
   </div>
@@ -25,6 +38,8 @@ const props = defineProps<Props>();
 
 const emit = defineEmits<{
   select: [member: Member];
+  edit: [member: Member];
+  delete: [member: Member];
 }>();
 
 const defaultAvatar = 'https://img.yzcdn.cn/vant/cat.jpeg';
@@ -41,6 +56,10 @@ const calculateAge = (birthDate: string): string => {
 
   return `${age}岁`;
 };
+
+const formatDate = (date: string): string => {
+  return new Date(date).toLocaleDateString('zh-CN');
+};
 </script>
 
 <style scoped>
@@ -54,15 +73,39 @@ const calculateAge = (birthDate: string): string => {
   margin-top: 8px;
   color: #666;
   font-size: 14px;
+  align-items: center;
 }
 
 .gender {
   padding: 2px 8px;
-  background: #f0f0f0;
   border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.gender.male {
+  background: #e6f7ff;
+  color: #1890ff;
+}
+
+.gender.female {
+  background: #fff0f6;
+  color: #eb2f96;
 }
 
 .age {
+  color: #666;
+  font-weight: 500;
+}
+
+.birth-date {
   color: #999;
+  font-size: 12px;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
 }
 </style>

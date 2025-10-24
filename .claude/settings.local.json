@@ -8,7 +8,8 @@
       "Bash(npm run check:*)",
       "Bash(npm cache clean:*)",
       "Bash(tree:*)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Bash(git add:*)"
     ],
     "deny": [],
     "ask": []

@@ -13,7 +13,7 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/members',
     name: 'MemberList',
-    component: () => import('@/views/MemberList.vue'),
+    component: () => import('@/views/MemberList-simple.vue'),
     meta: {
       title: '成员管理',
     },
