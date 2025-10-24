@@ -4,7 +4,10 @@
       "Bash(dir:*)",
       "Bash(npm run dev)",
       "Bash(cat:*)",
-      "Bash(npm install:*)"
+      "Bash(npm install:*)",
+      "Bash(npm run check:*)",
+      "Bash(npm cache clean:*)",
+      "Bash(tree:*)"
     ],
     "deny": [],
     "ask": []
